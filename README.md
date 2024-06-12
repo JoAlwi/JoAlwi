@@ -1,4 +1,4 @@
-- 👋 Hi, I’m @JoAlwi
+- 👋 Hi, I’m @JonathanAlwi
 - 👀 I’m interested in web development
 - 🌱 I’m currently learning computer science
 - 📫 How to reach me (jonathanalwijojo@gmail.com)
