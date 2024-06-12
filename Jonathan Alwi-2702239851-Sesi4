@@ -1,0 +1,185 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOWnXTpyCY71NdlkygBFFQ4",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/JoAlwi/JoAlwi/blob/main/Jonathan%20Alwi-2702239851-Sesi4\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Newton Rapshon"
+      ],
+      "metadata": {
+        "id": "Ac7IT7G7ra82"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import numpy as np\n",
+        "\n",
+        "f = lambda x: x**2 - 2\n",
+        "f_prime = lambda x: 2*x\n",
+        "newton_raphson = 1.4 - (f(1.4))/(f_prime(1.4))\n",
+        "\n",
+        "print(\"newton_raphson =\", newton_raphson)\n",
+        "print(\"sqrt(2) =\", np.sqrt(2))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "rGZVXoMSwi_2",
+        "outputId": "053ddbe2-1360-4a98-b86a-1755606b3186"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "newton_raphson = 1.4142857142857144\n",
+            "sqrt(2) = 1.4142135623730951\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "mFWU9R4lraTU"
+      },
+      "outputs": [],
+      "source": [
+        "def my_newton (f, df, x0, tol):\n",
+        "  #output is an estimation of the root of f\n",
+        "  # using the New Raphson method\n",
+        "  # recursive implementation\n",
+        "  if abs(f(x0)) < tol:\n",
+        "    return x0\n",
+        "  else:\n",
+        "    return my_newton(f, df, x0 - f(x0)/df(x0), tol)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "estimate = my_newton(f, f_prime, 1.5, 1e-6)\n",
+        "print(\"estimate = \", estimate)\n",
+        "print(\"sqrt(2) =\", np.sqrt(2))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "QKYHTpS5tQWQ",
+        "outputId": "236d0441-d640-4b15-8ab1-dfb34a23ccf8"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "estimate =  1.4142135623746899\n",
+            "sqrt(2) = 1.4142135623730951\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Quiz 2 Bisection"
+      ],
+      "metadata": {
+        "id": "qgWg6xDgMmRT"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "f(x) = sin(x) - x\n",
+        "(a,b) = (0,1)\n",
+        "\n",
+        "tol = 0.001"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 106
+        },
+        "id": "F2pcncrjMoJ1",
+        "outputId": "fa577a63-8287-4cdd-a045-b727002eee3d"
+      },
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "error",
+          "ename": "SyntaxError",
+          "evalue": "cannot assign to function call here. Maybe you meant '==' instead of '='? (<ipython-input-1-52e9998d1df5>, line 1)",
+          "traceback": [
+            "\u001b[0;36m  File \u001b[0;32m\"<ipython-input-1-52e9998d1df5>\"\u001b[0;36m, line \u001b[0;32m1\u001b[0m\n\u001b[0;31m    f(x) = sin(x) - x\u001b[0m\n\u001b[0m    ^\u001b[0m\n\u001b[0;31mSyntaxError\u001b[0m\u001b[0;31m:\u001b[0m cannot assign to function call here. Maybe you meant '==' instead of '='?\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "f = lambda x: np.sin(x) - x\n",
+        "\n",
+        "r1 = my_bisection(f, 0, 1, 0.001)\n",
+        "print (\"r1 =\", r1)\n",
+        "\n",
+        "print (\"f(r1) =\", f(r1))\n",
+        ""
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 211
+        },
+        "id": "tTFm55PtMq5C",
+        "outputId": "c03342c7-bf3b-47a2-f7c0-f410e9df22a7"
+      },
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "error",
+          "ename": "NameError",
+          "evalue": "name 'my_bisection' is not defined",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mNameError\u001b[0m                                 Traceback (most recent call last)",
+            "\u001b[0;32m<ipython-input-2-ada1b5cc334c>\u001b[0m in \u001b[0;36m<cell line: 3>\u001b[0;34m()\u001b[0m\n\u001b[1;32m      1\u001b[0m \u001b[0mf\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;32mlambda\u001b[0m \u001b[0mx\u001b[0m\u001b[0;34m:\u001b[0m \u001b[0mnp\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msin\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mx\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;34m-\u001b[0m \u001b[0mx\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      2\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 3\u001b[0;31m \u001b[0mr1\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mmy_bisection\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mf\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;36m0\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;36m1\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;36m0.001\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      4\u001b[0m \u001b[0mprint\u001b[0m \u001b[0;34m(\u001b[0m\u001b[0;34m\"r1 =\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mr1\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      5\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;31mNameError\u001b[0m: name 'my_bisection' is not defined"
+          ]
+        }
+      ]
+    }
+  ]
+}
